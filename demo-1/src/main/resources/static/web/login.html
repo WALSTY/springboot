@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LOGIN</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+</head>
+<body>
+	<p>LOGIN</p>
+
+	<form id="form-login" action="index.html"  class="form-horizontal" role="form">
+					<!--用户名-->
+		<div class="form-group">
+			<label for="username" class="col-md-3 control-label">username：</label>
+			<div class="col-md-8">
+				<input name="username" type="text" class="form-control" id="username">
+			</div>
+		</div>
+					<!--密码-->
+		<div class="form-group">
+			<label for="password" class="col-md-3 control-label"> password：</label>
+			<div class="col-md-8">
+				<input name="password" type="text" class="form-control" id="password">
+			</div>
+		</div>
+					<!-- 记住我-->
+		<div class="form-group">
+			<div class="col-md-offset-3 col-md-6">
+				<div class="checkbox">
+				<label>
+				<input type="checkbox" id="auto">自动登录
+				</label>
+				</div>
+			</div>
+		</div>
+					<!--提交按钮-->
+		<div class="form-group">
+			<label class="col-md-3 control-label"></label>
+			<div class="col-md-8">
+			<input id="btn-login" class="btn btn-primary" type="button" value="登录" />
+			<span class="pull-right"><small>还没有账号？</small><a href="register.html">注册</a></span>
+			</div>
+		</div>
+	</form>
+	
+	<script>
+		$("#btn-login").click(function(){
+			$.ajax({
+				url: "/users/login",
+				type: "POST",
+				data: $("#form-login").serialize(),
+				dataType: "json",
+				success: function(json){
+					if(json.state == 200){
+						alert("dengluchenggong");
+						window.location.href = "../index.html";
+					}else{
+						alert("denglushibai");
+					}
+				},
+				error: function(xhr){
+					alert("weizhiyichang" + xhr.message);
+				}
+			})
+		})
+	
+	</script>
+
+</body>
+</html>

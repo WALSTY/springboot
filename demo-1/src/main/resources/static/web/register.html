@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>REGISTER</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+</head>
+
+<body>
+	<p>register</p>
+
+	<form id="form-reg" class="form-horizontal" role="form">
+
+		<div class="form-group">
+			<label class="col-md-3 control-label">username：</label>
+				<div class="col-md-8">
+					<input name="username" type="text" class="form-control">
+				</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-3 control-label"> password：</label>
+				<div class="col-md-8">
+					<input name="password" type="password" class="form-control">
+				</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-md-3 control-label"> password：</label>
+				<div class="col-md-8">
+					<input type="password" class="form-control">
+				</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-md-3 control-label"> nickname：</label>
+				<div class="col-md-8">
+					<input name = "nickname" type="text" class="form-control">
+				</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-md-3 control-label"> email：</label>
+				<div class="col-md-8">
+					<input name = "email" type="text" class="form-control">
+				</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-md-3 control-label"></label>
+				<div class="col-md-8">
+					<input id="btn-reg" class="btn btn-primary" type="button" value="立即注册" />
+					<span class="pull-right"><small>已经有账号？</small><a href="login.html">login</a></span>
+				</div>
+			</div>
+	</form>
+	
+	<script>
+	$("#btn-reg").click(function(){
+		$.ajax({
+			url:"/users/reg",
+			type:"POST",
+			data:$("#form-reg").serialize(),
+			dataType:"json",
+			success: function(json){
+				if(json.state == 200){
+					alert("changgong");
+				}else{
+					alert("shibai");
+				}
+			},
+			error: function(xhr){
+				alert("weizhicuowu" + xhr.status);
+			}
+		})
+	})
+	</script>
+
+</body>
+
+</html>

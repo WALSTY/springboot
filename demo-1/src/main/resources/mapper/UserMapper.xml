@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+
+  <resultMap type="com.example.demo.entity.User" id="UserEntityMap">
+  		<id column = "uid" property = "uid"></id>
+  		<result column = "is_delete" property = "isDelete"></result>
+  		<result column = "created_user" property = "createdUser"></result>
+  		<result column = "created_time" property = "createdTime"></result>
+  		<result column = "modified_user" property = "modifiedUser"></result>
+  		<result column = "modified_time" property = "modifiedTime"></result>
+  </resultMap>
+  
+  <insert id = "insert" useGeneratedKeys = "true" keyProperty = "uid">
+  	INSERT INTO users(username,password,salt,email,nickname,is_delete,
+  	created_user,created_time,modified_user,modified_time) VALUES (
+  		#{username},#{password},#{salt},#{email},#{nickname},#{isDelete},
+  		#{createdUser},#{createdTime},#{modifiedUser},#{modifiedTime}
+  	)
+  </insert>
+  
+  <select id = "findByUsername" resultMap = "UserEntityMap">
+  	SELECT * FROM users WHERE username = #{username}
+  </select>
+  
+</mapper>
